@@ -20,23 +20,6 @@ let db,
   storage,
   isFirebaseReady = false;
 
-function initFirebase() {
-  try {
-    if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
-    db = firebase.firestore();
-    storage = firebase.storage();
-    isFirebaseReady = true;
-    hideBanner();
-    loadCategories();
-    loadProducts();
-  } catch (e) {
-    console.warn("Firebase init failed:", e);
-    showBanner();
-    // Demo modda çalış
-    loadDemoData();
-  }
-}
-
 // ── STATE ──
 let categories = []; // { id, name, order }
 let products = []; // { id, categoryId, name, price, desc, img, ings[], sizes[], milk[], extras[] }
@@ -700,11 +683,37 @@ function esc(str) {
 }
 
 // ── INIT ──
+let auth;
+
 document.addEventListener("DOMContentLoaded", () => {
-  initAuth();
+  // Firebase tek seferinde başlat
+  if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+  db = firebase.firestore();
+  storage = firebase.storage();
+  auth = firebase.auth();
+  isFirebaseReady = true;
+
   goToPage("categories");
-  initFirebase();
+
+  // Auth durumu belli olunca yükle
+  auth.onAuthStateChanged((user) => {
+    if (!user) {
+      window.location.href = "login.html";
+      return;
+    }
+    // Giriş yapılmış — verileri yükle
+    hideBanner();
+    loadCategories();
+    loadProducts();
+  });
 });
+
+function handleLogout() {
+  if (auth)
+    auth.signOut().then(() => {
+      window.location.href = "login.html";
+    });
+}
 
 // ── SIDEBAR MOBILE ──
 function toggleSidebar() {
@@ -722,27 +731,4 @@ function closeSidebar() {
   document.getElementById("sidebar").classList.remove("open");
   document.getElementById("sidebarBackdrop").classList.remove("show");
   document.body.style.overflow = "";
-}
-
-// ── AUTH GUARD ──
-let auth;
-
-function initAuth() {
-  if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
-  auth = firebase.auth();
-
-  // Giriş durumunu dinle
-  auth.onAuthStateChanged((user) => {
-    if (!user) {
-      // Giriş yapılmamış → login'e yönlendir
-      window.location.href = "login.html";
-    }
-  });
-}
-
-function handleLogout() {
-  if (!auth) return;
-  auth.signOut().then(() => {
-    window.location.href = "login.html";
-  });
 }
