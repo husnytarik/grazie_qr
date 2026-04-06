@@ -2,6 +2,8 @@
    Coffee Grazie — Menu (Firebase)
 ═══════════════════════════════════════ */
 
+// firebaseConfig → config.js dosyasından geliyor
+
 if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
