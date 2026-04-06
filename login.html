@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coffee Grazie — Giriş</title>
+<link rel="stylesheet" href="login.css">
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+<script src="config.js"></script>
+</head>
+<body>
+
+<div class="login-wrap">
+
+  <div class="login-card">
+
+    <div class="login-logo">
+      <div class="login-logo-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+          <path d="M18 8h1a4 4 0 010 8h-1M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8zM6 1v3M10 1v3M14 1v3"/>
+        </svg>
+      </div>
+      <div class="login-logo-name">Coffee Grazie</div>
+      <div class="login-logo-sub">Admin Panel</div>
+    </div>
+
+    <form class="login-form" id="loginForm" onsubmit="handleLogin(event)">
+
+      <div class="form-group">
+        <label class="form-label">E-posta</label>
+        <input
+          id="emailInput"
+          class="form-input"
+          type="email"
+          placeholder="admin@coffeegrazie.com"
+          autocomplete="email"
+          required
+        >
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Şifre</label>
+        <div class="password-wrap">
+          <input
+            id="passwordInput"
+            class="form-input"
+            type="password"
+            placeholder="••••••••"
+            autocomplete="current-password"
+            required
+          >
+          <button type="button" class="password-toggle" onclick="togglePassword()">
+            <svg id="eyeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="login-error" id="loginError"></div>
+
+      <button type="submit" class="login-btn" id="loginBtn">
+        <span id="loginBtnText">Giriş Yap</span>
+        <div class="login-spinner" id="loginSpinner"></div>
+      </button>
+
+    </form>
+
+  </div>
+
+  <div class="login-footer">
+    Coffee Grazie &copy; 2025
+  </div>
+
+</div>
+
+<script src="login.js"></script>
+</body>
+</html>

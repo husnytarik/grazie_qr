@@ -1,6 +1,20 @@
 /* ═══════════════════════════════════════
    Coffee Grazie — Admin Panel Logic
+   Firebase bağlantısı için:
+   firebaseConfig değişkenini doldurun
 ═══════════════════════════════════════ */
+
+// ── FIREBASE CONFIG ──
+// Firebase Console → Project Settings → Your Apps → Config
+const firebaseConfig = {
+  apiKey: "AIzaSyChZQs0aute9V5tnFvnSQa6laHhrCjDfmk",
+  authDomain: "grazie-2a2a7.firebaseapp.com",
+  projectId: "grazie-2a2a7",
+  storageBucket: "grazie-2a2a7.firebasestorage.app",
+  messagingSenderId: "48962649572",
+  appId: "1:48962649572:web:0926d8484ad0640d491bf1",
+};
+
 // Firebase SDK (CDN üzerinden yüklendi)
 let db,
   storage,
@@ -687,6 +701,7 @@ function esc(str) {
 
 // ── INIT ──
 document.addEventListener("DOMContentLoaded", () => {
+  initAuth();
   goToPage("categories");
   initFirebase();
 });
@@ -707,4 +722,27 @@ function closeSidebar() {
   document.getElementById("sidebar").classList.remove("open");
   document.getElementById("sidebarBackdrop").classList.remove("show");
   document.body.style.overflow = "";
+}
+
+// ── AUTH GUARD ──
+let auth;
+
+function initAuth() {
+  if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+  auth = firebase.auth();
+
+  // Giriş durumunu dinle
+  auth.onAuthStateChanged((user) => {
+    if (!user) {
+      // Giriş yapılmamış → login'e yönlendir
+      window.location.href = "login.html";
+    }
+  });
+}
+
+function handleLogout() {
+  if (!auth) return;
+  auth.signOut().then(() => {
+    window.location.href = "login.html";
+  });
 }

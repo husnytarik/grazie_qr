@@ -8,6 +8,7 @@
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
     <script src="config.js"></script>
   </head>
   <body>
@@ -63,7 +64,23 @@
             <span></span><span></span><span></span>
           </button>
           <div class="topbar-title" id="topbarTitle">Kategoriler</div>
-          <div class="topbar-actions" id="topbarActions"></div>
+          <div class="topbar-actions" id="topbarActions">
+            <button class="btn btn-outline btn-sm" onclick="handleLogout()">
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9"
+                />
+              </svg>
+              Çıkış
+            </button>
+          </div>
         </div>
 
         <!-- CATEGORIES -->
