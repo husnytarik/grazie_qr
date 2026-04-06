@@ -1,4 +1,3 @@
-cat > config.js << "EOF";
 const firebaseConfig = {
   apiKey: "AIzaSyChZQs0aute9V5tnFvnSQa6laHhrCjDfmk",
   authDomain: "grazie-2a2a7.firebaseapp.com",
@@ -7,4 +6,3 @@ const firebaseConfig = {
   messagingSenderId: "48962649572",
   appId: "1:48962649572:web:0926d8484ad0640d491bf1",
 };
-EOF;
