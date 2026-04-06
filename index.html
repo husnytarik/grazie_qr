@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+    />
+    <title>Coffee Grazie — Menü</title>
+    <link rel="stylesheet" href="menu.css" />
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+  </head>
+  <body>
+    <header class="header">
+      <img class="logo-img" src="logo.png" alt="Coffee Grazie" />
+    </header>
+
+    <nav class="tabs" id="tabs">
+      <!-- loading skeleton -->
+      <div class="tab-skeleton"></div>
+    </nav>
+
+    <main class="main" id="main">
+      <div class="menu-loading" id="menuLoading">
+        <div class="loading-spinner"></div>
+      </div>
+    </main>
+
+    <div class="p-overlay" id="overlay">
+      <div class="ov-photo" id="ovPhoto">
+        <button class="ov-back" onclick="closeOverlay()">&#8249;</button>
+        <div class="ov-ings" id="ovIngs"></div>
+        <div class="ov-divider"></div>
+        <div class="ov-img-wrap" id="ovImgWrap"></div>
+      </div>
+      <div class="ov-sheet">
+        <div class="ov-header">
+          <div class="ov-name" id="ovName"></div>
+          <div class="ov-price" id="ovPrice"></div>
+        </div>
+        <div class="ov-line"><div class="ov-line-diamond"></div></div>
+        <div class="ov-desc" id="ovDesc"></div>
+        <div class="sec-block" id="sizeBlock">
+          <span class="sec-label">Boyut</span>
+          <div class="chips" id="sizeChips"></div>
+        </div>
+        <div class="sec-block" id="milkBlock">
+          <span class="sec-label">Süt Seçimi</span>
+          <div class="chips" id="milkChips"></div>
+        </div>
+        <div class="sec-block" id="extrasBlock">
+          <span class="sec-label">Ekstralar</span>
+          <div class="chips" id="extraChips"></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="menu.js"></script>
+  </body>
+</html>
